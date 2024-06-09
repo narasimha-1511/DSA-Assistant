@@ -16,19 +16,7 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-async function getPrePromtedResponse(leetcodeQuestion, doubt, historyy = []) {
-  const promts = {
-    intuitions: `I'd like to gain a deeper intuition on how to approach solving the following LeetCode question:
-        ${leetcodeQuestion}
-        Can you provide a high-level overview or strategy for tackling this problem?`,
-    pseudocode: `I'm looking for a pseudocode representation to solve the following LeetCode question:
-        ${leetcodeQuestion} 
-        Could you provide a step-by-step algorithm or pseudocode for this problem?`,
-    hints: `I'd appreciate some hints or guidance on how to approach solving the following LeetCode question:
-        ${leetcodeQuestion}
-        Could you provide some hints or strategies to get started?`,
-  };
-  console.log(leetcodeQuestion, doubt, historyy);
+async function continueChat(doubt, historyy) {
   const chatSession = model.startChat({
     generationConfig,
     // safetySettings: Adjust safety settings
@@ -54,10 +42,10 @@ async function getPrePromtedResponse(leetcodeQuestion, doubt, historyy = []) {
     ],
   });
 
-  const result = await chatSession.sendMessage(promts[doubt]);
+  const result = await chatSession.sendMessage(doubt);
   console.log(result.response.text());
 
   return result.response.text();
 }
 
-module.exports = { getPrePromtedResponse };
+module.exports = { continueChat };

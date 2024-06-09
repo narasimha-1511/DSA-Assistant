@@ -1,21 +1,15 @@
 const express = require("express");
-const preprompt = require("../gemini/getPrePromptResponse");
+const { preprompt } = require("../controllers/PrePrompt");
+const { customDoubt } = require("../controllers/CustomDoubt");
+const { continuee } = require("../controllers/continue");
 
 const router = express.Router();
 
-router.get("/test", (req, res) => {
-  res.json({
-    message: "Hello from the Test server",
-  });
-});
-
-router.post("/custom", (req, res) => {
-  res.json({
-    message: "Hello from the Custom server",
-  });
-});
+router.post("/custom", customDoubt);
 
 router.post("/preprompt", preprompt);
+
+router.post("/continue", continuee);
 
 router.get("/", (req, res) => {
   res.json({

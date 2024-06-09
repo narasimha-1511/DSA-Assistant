@@ -1,6 +1,6 @@
 .chat-container {
     width: 80%;
-    height: 600px;
+    height: 550px;
     background-color: #fff;
     margin: 50px auto;
     border-radius: 8px;
@@ -98,6 +98,7 @@ margin: 20px auto; /* Updated margin to 20px auto */
     100% { transform: rotate(360deg); }
 }
 .bot-message pre {
+    color: darkred;
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
     white-space: -pre-wrap;      /* Opera 4-6 */
