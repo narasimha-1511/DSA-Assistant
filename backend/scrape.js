@@ -23,21 +23,12 @@ async function scrapeLeetCodeProblem(url) {
 
     // Evaluate the page content to extract the description
     const description = await page.evaluate(() => {
-      const titleElement = document.querySelector(".text-title-large a");
-      if (!titleElement) {
-        console.log("Title element not found");
-        return null;
-      }
-      const title = titleElement.innerText;
-
       const descElement = document.querySelector(".elfjS");
       if (!descElement) {
         console.log("Description element not found");
         return null;
       }
-      const description = descElement.innerHTML; // Extract inner HTML content
-
-      return { Title: title, Description: description };
+      return descElement.innerHTML; // Extract inner HTML content
     });
 
     console.log("Scraped Description:", description);
@@ -53,4 +44,20 @@ async function scrapeLeetCodeProblem(url) {
   }
 }
 
-module.exports = { scrapeLeetCodeProblem };
+scrapeLeetCodeProblem("https://leetcode.com/problems/two-sum/description/");
+
+// module.exports = async (req, res) => {
+//   const { url } = req.query;
+//   if (!url) {
+//     return res.status(400).json({ error: "Missing URL parameter" });
+//   }
+
+//   const description = await scrapeLeetCodeProblem(url);
+//   if (!description) {
+//     return res
+//       .status(500)
+//       .json({ error: "Failed to scrape the problem description" });
+//   }
+
+//   res.status(200).json({ description });
+// };
