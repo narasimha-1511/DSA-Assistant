@@ -1,6 +1,5 @@
 const getResponse = async (url, message, isCustomDoubt, history) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
   if (isCustomDoubt) {
     return fetch(backendUrl + "api/custom", {
       method: "POST",
@@ -25,6 +24,7 @@ const getResponse = async (url, message, isCustomDoubt, history) => {
 };
 
 const continueChat = async (message, history) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   return fetch(backendUrl + "api/continue", {
     method: "POST",
     headers: {
