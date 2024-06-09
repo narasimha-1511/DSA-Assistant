@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
+// const cors = require("cors");
 const v1 = require("./routes/v1");
 const scrapeLeetCodeProblem = require("./pupertter");
 const { sourceMapsEnabled } = require("process");
@@ -21,7 +21,7 @@ const corsOptions = {
 };
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 app.get("/scrape", (req, res) => {
   try {

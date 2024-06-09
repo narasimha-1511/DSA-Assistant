@@ -1,10 +1,8 @@
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-puppeteer.use(StealthPlugin());
+const puppeteer = require("puppeteer");
 
 async function scrapeLeetCodeProblem(url) {
   try {
-    const browser = await puppeteer.launch({ headless: true }); // Set headless to true
+    const browser = await puppeteer.launch(); // Set headless to false for debugging
     const page = await browser.newPage();
 
     // Capture console messages from the page
@@ -16,7 +14,9 @@ async function scrapeLeetCodeProblem(url) {
     await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
 
     // Custom delay function
-    // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    // Wait for a longer period to ensure the page fully loads
     // await delay(5000); // Wait for an additional 5 seconds
 
     // Wait for the selector to be present on the page
@@ -38,7 +38,8 @@ async function scrapeLeetCodeProblem(url) {
         return null;
       }
       const description = descElement.innerText;
-      console.log("Title:", title);
+
+      console.log("Title:", title + " Description: " + description);
       return { Title: title, Description: description };
     });
 
@@ -51,7 +52,5 @@ async function scrapeLeetCodeProblem(url) {
     console.error("Error fetching data:", error);
   }
 }
-
-module.exports = scrapeLeetCodeProblem;
 
 // scrapeLeetCodeProblem("https://leetcode.com/problems/two-sum/description/");
