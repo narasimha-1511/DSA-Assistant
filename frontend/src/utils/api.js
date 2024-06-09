@@ -3,7 +3,7 @@ import { useDeferredValue } from "react";
 const getResponse = async (url, message, isCustomDoubt, history) => {
   // https://assignment-i3ww.vercel.app/
   if (isCustomDoubt) {
-    return fetch("http://localhost:3000/api/custom", {
+    return fetch("https://assignment-i3ww.vercel.app/api/custom", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ const getResponse = async (url, message, isCustomDoubt, history) => {
       .then((response) => response.json())
       .then((data) => data.message);
   } else {
-    return fetch("http://localhost:3000/api/preprompt", {
+    return fetch("https://assignment-i3ww.vercel.app/api/preprompt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const getResponse = async (url, message, isCustomDoubt, history) => {
 };
 
 const continueChat = async (message, history) => {
-  return fetch("http://localhost:3000/api/continue", {
+  return fetch("https://assignment-i3ww.vercel.app/api/continue", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
