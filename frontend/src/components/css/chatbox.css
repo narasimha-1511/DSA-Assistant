@@ -36,13 +36,22 @@
     border-top: 1px solid #ddd;
     padding: 20px;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .chat-input input {
     flex-grow: 1;
-    border: none;
     padding: 10px;
+    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
 }
+.chat-input select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
 .chat-input button {
     margin-left: 10px;
     padding: 10px 20px;
@@ -95,3 +104,7 @@ margin: 20px auto; /* Updated margin to 20px auto */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
+
+
+
