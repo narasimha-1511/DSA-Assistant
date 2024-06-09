@@ -1,9 +1,11 @@
-import { useDeferredValue } from "react";
+import dotenv from "dotenv";
+dotenv.config();
 
 const getResponse = async (url, message, isCustomDoubt, history) => {
-  // https://assignment-i3ww.vercel.app/
+  const backendUrl = process.env.BACKEND_URL;
+
   if (isCustomDoubt) {
-    return fetch("https://assignment-i3ww.vercel.app/api/custom", {
+    return fetch(backendUrl + "api/custom", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +15,7 @@ const getResponse = async (url, message, isCustomDoubt, history) => {
       .then((response) => response.json())
       .then((data) => data.message);
   } else {
-    return fetch("https://assignment-i3ww.vercel.app/api/preprompt", {
+    return fetch(backendUrl + "api/preprompt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +28,7 @@ const getResponse = async (url, message, isCustomDoubt, history) => {
 };
 
 const continueChat = async (message, history) => {
-  return fetch("https://assignment-i3ww.vercel.app/api/continue", {
+  return fetch(backendUrl + "api/continue", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

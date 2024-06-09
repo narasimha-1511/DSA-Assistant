@@ -1,5 +1,4 @@
 const express = require("express");
-// const path = require("path");
 const cors = require("cors");
 const v1 = require("./routes/v1");
 // const scrapeLeetCodeProblem = require("./pupertterawslambda");
@@ -7,7 +6,6 @@ const v1 = require("./routes/v1");
 const app = express();
 require("dotenv").config();
 
-//configuring cors to allow requests from frontend
 const corsOptions = {
   origin: function (origin, callback) {
     if (process.env.ALLOWED_ORIGINS.split(",").indexOf(origin) !== -1) {
@@ -18,13 +16,13 @@ const corsOptions = {
   },
 };
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json(cors));
+app.use(cors(corsOptions));
 
 app.use("/api", v1);
 
 app.get("*", (req, res) => {
-  res.json({
+  res.status(401).json({
     error: "Unauthorized access",
   });
 });

@@ -19,8 +19,6 @@ const generationConfig = {
 async function continueChat(doubt, historyy) {
   const chatSession = model.startChat({
     generationConfig,
-    // safetySettings: Adjust safety settings
-    // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
       {
         role: "user",
@@ -43,7 +41,6 @@ async function continueChat(doubt, historyy) {
   });
 
   const result = await chatSession.sendMessage(doubt);
-  console.log(result.response.text());
 
   return result.response.text();
 }

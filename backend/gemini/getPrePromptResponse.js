@@ -31,8 +31,6 @@ async function getPrePromtedResponse(leetcodeQuestion, doubt, historyy = []) {
   console.log(leetcodeQuestion, doubt, historyy);
   const chatSession = model.startChat({
     generationConfig,
-    // safetySettings: Adjust safety settings
-    // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
       {
         role: "user",
@@ -55,7 +53,6 @@ async function getPrePromtedResponse(leetcodeQuestion, doubt, historyy = []) {
   });
 
   const result = await chatSession.sendMessage(promts[doubt]);
-  console.log(result.response.text());
 
   return result.response.text();
 }

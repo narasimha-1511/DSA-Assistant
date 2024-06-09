@@ -20,8 +20,6 @@ async function getResponse(leetcodeQuestion, doubt, historyy = []) {
   console.log(leetcodeQuestion, doubt, historyy);
   const chatSession = model.startChat({
     generationConfig,
-    // safetySettings: Adjust safety settings
-    // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
       {
         role: "user",
@@ -46,7 +44,6 @@ async function getResponse(leetcodeQuestion, doubt, historyy = []) {
   const message = `\"Here is the LeetCode question along with the doubt I have:\n\n${leetcodeQuestion}\n\n${doubt}\"`;
 
   const result = await chatSession.sendMessage(message);
-  console.log(result.response.text());
 
   return result.response.text();
 }
