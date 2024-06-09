@@ -1,8 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 const getResponse = async (url, message, isCustomDoubt, history) => {
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   if (isCustomDoubt) {
     return fetch(backendUrl + "api/custom", {
